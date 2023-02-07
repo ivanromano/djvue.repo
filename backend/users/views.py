@@ -12,7 +12,7 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
 class ListaUserView(generics.ListCreateAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UserSerializer 
     queryset = User.objects.all()
 
 # la peticion tiene que tener email y password

@@ -15,7 +15,10 @@ SECRET_KEY = 'django-insecure-84mr2ywl@*ed6+vmn@wl*x(8-p3pif(io2aw#vnknj8m&5x#=w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+]
 
 
 # Application definition
@@ -32,6 +35,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'users',
     'vblog',
+    'dist',
     'corsheaders',
 ]
 
@@ -57,6 +61,11 @@ CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1:8001',
     'http://localhost:8001',
 
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+
+    'http://localhost:5174',
+    'http://127.0.0.1:5174'
 )
 
 ROOT_URLCONF = 'core.urls'
@@ -64,7 +73,6 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,6 +136,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'dist/assets')
+# ]
+
 
 if not DEBUG:
     # Tell Django to copy statics to the `staticfiles` directory

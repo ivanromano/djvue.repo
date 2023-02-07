@@ -2,15 +2,14 @@ from django.contrib.auth import get_user_model, authenticate
 
 from rest_framework import serializers
 
-
-
 class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(style={'input_type': 'password'}, min_length=6)
 
     class Meta:
         model = get_user_model()
         fields = ['email', 'password', 'name']
         # la password no la vamos a poder ver
-        extra_kwargs = {'password': {'write_only': True}}
+        extra_kwargs = {'password': {'write_only': False}}
 
 
     def create(self, validate_data):
@@ -31,7 +30,7 @@ class AuthTokenSerializer(serializers.Serializer):
         )
 
         if not user:
-            raise serializers.ValidationError('No se pudo autenticat', code='authorization')
+            raise serializers.ValidationError('El usuario no existe', code='authorization')
 
         data['user'] = user
         return data
